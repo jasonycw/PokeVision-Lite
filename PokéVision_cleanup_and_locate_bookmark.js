@@ -1,13 +1,22 @@
 javascript:(function(){
 	$('.ad-unit').remove();
 	$('.home-sidebar').remove();
+	$('.leaflet-control-attribution').remove();
+	$('.ocrext-element.ocrext-wrapper').remove();
 	$('footer').remove();
 
 	$('.header').css('padding',"10px 0");
+	$('.header-mobile').css('position',"absolute");
+	$('.header-mobile').css('width',"100%");
 	$('.home').addClass('embed-map');
-	$('.home').css('padding',"0");
+	$('.home').attr('style', 'height: 100% !important; padding: 0');
 	$('.home-map').css('padding',"0");
 	$('.home-map').css('height',"100vh");
+	$('.home-map-scan').css('bottom','16px');
+	$('.home-map-scan').css('left','168px');
+	$('.bootstrap-select.show-tick').css('top','auto');
+	$('.bootstrap-select.show-tick').css('bottom','16px');
+	$('.bootstrap-select.show-tick').css('right','70px');
 
 	App.init();
 	App.header.init();
