@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<title>PokéVision Lite</title>
+	<style>
+		iframe {
+		    position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		    border: none;
+		}
+	</style>
+</head>
+
+<body>
+
+<iframe id="PokeVision-iframe" src="https://pokevision.com/">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+
+<script>
+	document.getElementById('PokeVision-iframe').onload= function() {
+        alert("hello world");
+    };
+</script>
+
+</body>
+
+
+</html>
+
