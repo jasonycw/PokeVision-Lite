@@ -23,30 +23,35 @@ $('.bootstrap-select.show-tick').css('right','70px');
 App.init();
 App.header.init();
 
-// Get current location
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(e) {
-        var t = e.coords.latitude
-          , o = e.coords.longitude;
-        App.home.latitude = t;
-        App.home.longitude = o;
-        App.home.map.panTo({
-            lat: t,
-            lng: o
-        });
-        App.home.markers.center.setLatLng({
-            lat: t,
-            lng: o
-        });
-        App.home.updateMarkers();
-        App.home.findNearbyPokemon(t, o);
-        window.location.hash = '#/@' + t + ',' + o
-    }, function(e) {
-        App.error(e.message)
-    })
-} else {
-    App.error('Your browser doesn\'t support location tracking, sorry!')
-}
+// Get current location every 10s
+refreshLocation();
+setInterval(refreshLocation, 10000);
 
 // Resize map
 App.home.map.invalidateSize(new Object({debounceMoveend: true}));
+
+function refreshLocation(){
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(e) {
+            var t = e.coords.latitude
+              , o = e.coords.longitude;
+            App.home.latitude = t;
+            App.home.longitude = o;
+            App.home.map.panTo({
+                lat: t,
+                lng: o
+            });
+            App.home.markers.center.setLatLng({
+                lat: t,
+                lng: o
+            });
+            App.home.updateMarkers();
+            App.home.findNearbyPokemon(t, o);
+            window.location.hash = '#/@' + t + ',' + o
+        }, function(e) {
+            App.error(e.message)
+        })
+    } else {
+        App.error('Your browser doesn\'t support location tracking, sorry!')
+    }
+}

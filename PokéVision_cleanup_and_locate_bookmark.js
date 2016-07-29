@@ -1,4 +1,5 @@
-javascript:(function(){
+javascript:(
+function(){
 	$('.ad-unit').remove();
 	$('.home-sidebar').remove();
 	$('.leaflet-control-attribution').remove();
@@ -21,6 +22,15 @@ javascript:(function(){
 	App.init();
 	App.header.init();
 
+	refreshLocation();
+	setInterval(refreshLocation, 10000);
+	
+	App.home.map.invalidateSize(new Object({debounceMoveend: true}));
+}
+
+)();
+
+function refreshLocation(){
 	if (navigator.geolocation) {
 	    navigator.geolocation.getCurrentPosition(function(e) {
 	        var t = e.coords.latitude
@@ -44,6 +54,4 @@ javascript:(function(){
 	} else {
 	    App.error('Your browser doesn\'t support location tracking, sorry!')
 	}
-
-	App.home.map.invalidateSize(new Object({debounceMoveend: true}));
-})();
+}
